@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+ 	<meta charset="utf-8">
+  		<title>Pretty Kitty frontend</title>
+</head>
+<body>
+	<p> Enter your name: <input type="text" id="name"></input>
+		<button id="sendButton"> Submit </button>
+	</p>
+	<script>
+	  	var sendButton = document.getElementById("sendButton");
+	  	sendButton.addEventListener('click',function()
+	  	{
+			var name = document.getElementById("name").value;
+	  		console.log(name);
+	  		console.log("Name:" + name);
+	  		var req = new XMLHttpRequest();
+	  		req.onreadystatechange = function()
+	  		{
+	  			if(this.readyState == 4 && this.status == 200)
+	  			{
+	  				console.log(this.responseText);
+	  			}	
+	  		};
+	  		req.open('POST',encodeURI('?'+name),true);
+	  		req.send(name.toString());
+
+	  	});
+	  </script>
+</body>
+</html>
